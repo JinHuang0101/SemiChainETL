@@ -1,0 +1,247 @@
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+25/04/06 19:47:36 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+inputs_df: Dropping columns - All NULL: ['market_share_chart_caption'], Mostly NULL: [], Constant: [], Specified: None
+providers_df: Dropping columns - All NULL: [], Mostly NULL: [], Constant: [], Specified: None
+provision_df: Dropping columns - All NULL: [], Mostly NULL: [], Constant: ['negligible_market_share'], Specified: None
+sequence_df: Dropping columns - All NULL: [], Mostly NULL: [], Constant: [], Specified: None
+stages_df: Dropping columns - All NULL: [], Mostly NULL: [], Constant: [], Specified: None
+
+Pre-filter examination of provision_df:
+Validation Summary (pre-filter):
+Total provided_ids: 67
+Outliers with total_share > 110: 4 (5.97%)
+provided_ids with total_share = NULL: 24 (35.82%)
+
+Outlier rows with total_share > 110 (pre-filter):
++-----------+-----------+
+|provided_id|total_share|
++-----------+-----------+
+|N30        |200.0      |
+|N21        |200.0      |
+|N22        |200.0      |
+|N20        |200.0      |
++-----------+-----------+
+
+
+Rows with total_share = NULL (pre-filter):
++-----------+-----------+
+|provided_id|total_share|
++-----------+-----------+
+|N30        |200.0      |
+|N21        |200.0      |
+|N22        |200.0      |
+|N20        |200.0      |
++-----------+-----------+
+
+
+Validating provision_df sums by provided_id (pre-filter):
++-----------+-----------+
+|provided_id|total_share|
++-----------+-----------+
+|N90        |NULL       |
+|N10        |101.0      |
+|N41        |100.0      |
+|N19        |NULL       |
+|N71        |104.0      |
+|N30        |200.0      |
+|N39        |100.0      |
+|N67        |NULL       |
+|N38        |101.0      |
+|N82        |101.0      |
+|N3         |NULL       |
+|N33        |100.0      |
+|N92        |NULL       |
+|N96        |NULL       |
+|N42        |101.0      |
+|N83        |102.0      |
+|N70        |101.0      |
+|N12        |100.0      |
+|N86        |NULL       |
+|S3         |100.0      |
++-----------+-----------+
+only showing top 20 rows
+
+Outlier provided_ids (pre-filter): ['N30', 'N21', 'N22', 'N20']
+
+Raw data for outlier provided_ids ['N30', 'N21', 'N22', 'N20'] (pre-filter):
++----------------------+-----------+-----------------------+-----------+--------------+
+|provider_name         |provider_id|provided_name          |provided_id|share_provided|
++----------------------+-----------+-----------------------+-----------+--------------+
+|NLD                   |P45        |EUV scanners           |N20        |100.0         |
+|NLD                   |P45        |ArF immersion scanners |N22        |91.0          |
+|JPN                   |P7         |ArF immersion scanners |N22        |9.0           |
+|NLD                   |P45        |ArF scanners           |N21        |57.0          |
+|JPN                   |P7         |ArF scanners           |N21        |43.0          |
+|ASML                  |P88        |EUV scanners           |N20        |100.0         |
+|ASML                  |P88        |ArF immersion scanners |N22        |91.0          |
+|ASML                  |P88        |ArF scanners           |N21        |57.0          |
+|Nikon                 |P89        |ArF immersion scanners |N22        |9.0           |
+|Nikon                 |P89        |ArF scanners           |N21        |43.0          |
+|SMEE                  |P70        |ArF scanners           |N21        |NULL          |
+|SWE                   |P90        |Laser lithography tools|N30        |97.0          |
+|Mycronic              |P94        |Laser lithography tools|N30        |97.0          |
+|Heidelberg Instruments|P95        |Laser lithography tools|N30        |3.0           |
+|DEU                   |P32        |Laser lithography tools|N30        |3.0           |
++----------------------+-----------+-----------------------+-----------+--------------+
+
++-----------+-----------+-----------------------+-------------+--------------+---------+
+|provided_id|provider_id|provided_name          |provider_type|share_provided|row_count|
++-----------+-----------+-----------------------+-------------+--------------+---------+
+|N20        |P45        |EUV scanners           |country      |100.0         |1        |
+|N20        |P88        |EUV scanners           |organization |100.0         |1        |
+|N21        |P45        |ArF scanners           |country      |57.0          |1        |
+|N21        |P7         |ArF scanners           |country      |43.0          |1        |
+|N21        |P70        |ArF scanners           |organization |NULL          |1        |
+|N21        |P88        |ArF scanners           |organization |57.0          |1        |
+|N21        |P89        |ArF scanners           |organization |43.0          |1        |
+|N22        |P45        |ArF immersion scanners |country      |91.0          |1        |
+|N22        |P7         |ArF immersion scanners |country      |9.0           |1        |
+|N22        |P88        |ArF immersion scanners |organization |91.0          |1        |
+|N22        |P89        |ArF immersion scanners |organization |9.0           |1        |
+|N30        |P32        |Laser lithography tools|country      |3.0           |1        |
+|N30        |P90        |Laser lithography tools|country      |97.0          |1        |
+|N30        |P94        |Laser lithography tools|organization |97.0          |1        |
+|N30        |P95        |Laser lithography tools|organization |3.0           |1        |
++-----------+-----------+-----------------------+-------------+--------------+---------+
+
+
+Row counts per outlier provided_id (pre-filter):
++-----------+----------+
+|provided_id|total_rows|
++-----------+----------+
+|N30        |4         |
+|N21        |5         |
+|N22        |4         |
+|N20        |2         |
++-----------+----------+
+
+
+Post-filter examination of provision_df:
+Validation Summary (post-filter):
+Total provided_ids: 59
+Outliers with total_share > 110: 0 (0.00%)
+provided_ids with total_share = NULL: 16 (27.12%)
+
+Outlier rows with total_share > 110 (post-filter):
++-----------+-----------+
+|provided_id|total_share|
++-----------+-----------+
++-----------+-----------+
+
+
+Validating provision_df sums by provided_id (post-filter):
++-----------+-----------+
+|provided_id|total_share|
++-----------+-----------+
+|N90        |NULL       |
+|N10        |101.0      |
+|N41        |100.0      |
+|N19        |NULL       |
+|N71        |104.0      |
+|N30        |100.0      |
+|N39        |100.0      |
+|N38        |101.0      |
+|N82        |101.0      |
+|N33        |100.0      |
+|N92        |NULL       |
+|N96        |NULL       |
+|N42        |101.0      |
+|N83        |102.0      |
+|N70        |101.0      |
+|N12        |100.0      |
+|N86        |NULL       |
+|S3         |100.0      |
+|N45        |101.0      |
+|N44        |101.0      |
++-----------+-----------+
+only showing top 20 rows
+
+Post filter, > 100 outliers count is 0
+
+=== inputs_df ===
++--------------------------------+--------+-------------+----------+--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------+----+
+|input_name                      |input_id|type         |stage_name|stage_id|description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |market_share_chart_global_market_size_info|market_share_chart_source                                                                                                                  |market_size|year|
++--------------------------------+--------+-------------+----------+--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------+----+
+|Logic chip design: Advanced CPUs|N1      |process      |Design    |S1      |Central processing units ("CPUs") are the dominant general purpose logic chips. Two U.S. firms, Intel and AMD, have long held a duopoly over CPUs used for laptops, desktops, and servers. (China has several ventures, though none are competitive with U.S. firms.) CPUs are often classified into "nodes" which represent technology generations: a chip at a new node (e.g., "5 nm" released in 2020) contains approximately double the transistor density as a previous node (e.g., "7 nm" released in 2018) and is also more cost-effective.                                                                                                                                                                 |$56.2 billion (microprocessors) (2019)    |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing SIA, IC Insights, TrendForce, financial statements)|56200.0    |2019|
+|Logic chip design: Discrete GPUs|N2      |process      |Design    |S1      |Discrete graphics processing units ("GPUs") have long been used for graphics processing (for example, in video game consoles) and in the last decade have become the most used chip for training artificial intelligence algorithms. The United States monopolizes the design market for GPUs, including standalone "discrete GPUs" the most powerful GPUs.                                                                                                                                                                                                                                                                                                                                                        |$11.9 billion (2019)                      |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing SIA, IC Insights, TrendForce, financial statements)|11900.0    |2019|
+|Logic chip design: FPGAs        |N3      |process      |Design    |S1      |Field-programmable gate arrays ("FPGAs"), unlike other chips, can be reprogrammed after deployment to suit specific calculations, such as executing particular algorithms. U.S. firms capture virtually the entire FPGA design market.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |$5.7 billion (2019)                       |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing SIA, IC Insights, TrendForce, financial statements)|5700.0     |2019|
+|Logic chip design: AI ASICs     |N4      |process      |Design    |S1      |Application-specific integrated circuits for artificial intelligence ("AI ASICs"), a rapidly growing category of logic chips, often achieve greater speed and efficiency for artificial intelligence than GPUs and FPGAs, but are usable only for specific algorithms. ASICs can be easier to design than CPUs, GPUs, and FPGAs, opening the field to a wide range of design startups, including in China. Still, few highly specialized ASICs have been widely commercialized, as their markets are often too small for recouping fixed development costs.                                                                                                                                                        |NULL                                      |NULL                                                                                                                                       |NULL       |NULL|
+|Crystal growing furnaces        |N8      |tool_resource|NULL      |NULL    |Crystal growing furnaces and machining tools are necessary to produce all wafers-thin, disc-shaped materials fabs used to produce chips. The furnace forms a cylindrical ingot of silicon from polycrystalline raw silicon; machining equipment then cuts the ingot into wafers used for chip fabrication. These tools have relatively low value and complexity relative to other semiconductor manufacturing equipment. Japan, Germany, and Switzerland are the main producers.                                                                                                                                                                                                                                   |$21 million (2019)                        |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing VLSI Research)                                     |21.0       |2019|
+|Crystal machining tools         |N9      |tool_resource|NULL      |NULL    |Crystal growing furnaces and machining tools are necessary to produce all wafers-thin, disc-shaped materials fabs used to produce chips. The furnace forms a cylindrical ingot of silicon from polycrystalline raw silicon; machining equipment then cuts the ingot into wafers used for chip fabrication. These tools have relatively low value and complexity relative to other semiconductor manufacturing equipment.                                                                                                                                                                                                                                                                                           |$110 million (2019)                       |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing VLSI Research)                                     |110.0      |2019|
+|Wafer bonding and aligning tools|N10     |tool_resource|NULL      |NULL    |Wafer bonders and aligners join silicon wafers. In this visualization, these tools are included as an input to producing wafers, but they may also be used later in the production process, after chips are fabricated in the wafers. Austria, Germany, and the United States produce this equipment.                                                                                                                                                                                                                                                                                                                                                                                                              |$140 million (2019)                       |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing VLSI Research)                                     |140.0      |2019|
+|Wafer handlers                  |N11     |tool_resource|NULL      |NULL    |Wafer and photomask handlers store and transport wafers and photomasks in a fab. Japan, the United States, South Korea, Taiwan, and France produce these relatively less complex tools.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |$1.3 billion (2019)                       |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing VLSI Research)                                     |1300.0     |2019|
+|Photomask handlers              |N12     |tool_resource|NULL      |NULL    |Wafer and photomask handlers store and transport wafers and photomasks in a fab. Japan, South Korea, Taiwan, and France produce these relatively less complex tools.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |$99 million (2019)                        |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing VLSI Research)                                     |99.0       |2019|
+|Ion implanters                  |N17     |tool_resource|NULL      |NULL    |Ion implanters embed dopant substances into silicon wafers to give different parts of the wafer different levels of semiconductivity to make functional transistors in chips. Different types of implanters are used for different purposes. Low-to-medium-current ion implanters and high-current ion implanters are most commonly used, with high-current ion implanters capable of greater throughput. Meanwhile, high-voltage ion implanters can implant ions deeply into silicon, and ultra-high-dose doping implanters can achieve greater dopant density than the other tools. The United States is the dominant producer of ion implanters, with Japan and Taiwan rounding out most of global market share.|about $1 billion (2019)                   |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing VLSI Research)                                     |1000.0     |2019|
++--------------------------------+--------+-------------+----------+--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+-----------+----+
+only showing top 10 rows
+
+==================================================
+
+=== providers_df ===
++-------------+-----------+-------------+-------+
+|provider_name|provider_id|provider_type|country|
++-------------+-----------+-------------+-------+
+|USA          |P1         |country      |USA    |
+|CHN          |P2         |country      |CHN    |
+|KOR          |P4         |country      |KOR    |
+|Various      |P5         |country      |Various|
+|JPN          |P7         |country      |JPN    |
+|TWN          |P8         |country      |TWN    |
+|Intel        |P9         |organization |USA    |
+|AMD          |P10        |organization |USA    |
+|Nvidia       |P11        |organization |USA    |
+|Jingjia Micro|P12        |organization |CHN    |
++-------------+-----------+-------------+-------+
+only showing top 10 rows
+
+==================================================
+
+=== provision_df ===
++-----------+-------------+-------------+-----------+--------------+
+|provider_id|provider_name|provided_name|provided_id|share_provided|
++-----------+-------------+-------------+-----------+--------------+
+|P1         |USA          |Design       |S1         |61.0          |
+|P4         |KOR          |Design       |S1         |6.0           |
+|P5         |Various      |Design       |S1         |9.0           |
+|P7         |JPN          |Design       |S1         |6.0           |
+|P8         |TWN          |Design       |S1         |9.0           |
+|P2         |CHN          |Design       |S1         |9.0           |
+|P1         |USA          |Fabrication  |S2         |27.0          |
+|P8         |TWN          |Fabrication  |S2         |47.0          |
+|P4         |KOR          |Fabrication  |S2         |11.0          |
+|P7         |JPN          |Fabrication  |S2         |1.0           |
++-----------+-------------+-------------+-----------+--------------+
+only showing top 10 rows
+
+==================================================
+
+=== sequence_df ===
++------------------------------------------+--------+------------------+------------+------------------------------------------+-------------+
+|input_name                                |input_id|goes_into_name    |goes_into_id|is_type_of_name                           |is_type_of_id|
++------------------------------------------+--------+------------------+------------+------------------------------------------+-------------+
+|Crystal growing furnaces                  |N8      |Wafer             |N26         |NULL                                      |NULL         |
+|Crystal machining tools                   |N9      |Wafer             |N26         |NULL                                      |NULL         |
+|EUV scanners                              |N20     |NULL              |NULL        |Advanced photolithography equipment       |N19          |
+|ArF scanners                              |N21     |NULL              |NULL        |Advanced photolithography equipment       |N19          |
+|ArF immersion scanners                    |N22     |NULL              |NULL        |Advanced photolithography equipment       |N19          |
+|Advanced photolithography equipment       |N19     |Photolithography  |N25         |NULL                                      |NULL         |
+|Ion implanters                            |N17     |Wafer             |N26         |NULL                                      |NULL         |
+|Photomask (maskless) lithography equipment|N28     |Advanced photomask|N33         |NULL                                      |NULL         |
+|Electron-beam lithography tools           |N29     |NULL              |NULL        |Photomask (maskless) lithography equipment|N28          |
+|Laser lithography tools                   |N30     |NULL              |NULL        |Photomask (maskless) lithography equipment|N28          |
++------------------------------------------+--------+------------------+------------+------------------------------------------+-------------+
+only showing top 10 rows
+
+==================================================
+
+=== stages_df ===
++--------+--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+-----------+----+
+|stage_id|stage_name                            |description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |market_share_chart_global_market_size_info|market_share_chart_caption                                                                                                                                                                              |market_share_chart_source                                                                                                                         |market_size|year|
++--------+--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+-----------+----+
+|S1      |Design                                |Logic chip design involves specification, logic design, physical design, and validation and verification. Specification determines how the chip should operate in the system using it.  Logic design creates a schematic model of interconnected electrical components. Physical design translates this model to a physical layout of electrical components and interconnects, the wires that connect components. Validation and verification ensure chips based on the design will operate as expected. The United States designs most of the world's logic chips, with South Korea, Europe, Japan, Taiwan, and China each capturing small shares. High-value categories in logic chip design include high-end CPU design, discrete GPU design, FPGA design, and AI ASIC design.                                                                                                                                                                                                                                                                                     |Over $70 billion (2019)                   |Chart shows market shares for the overall global logic chip design market.                                                                                                                              |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing SIA, IC Insights, TrendForce, financial statements)       |70000.0    |2019|
+|S2      |Fabrication                           |Fabrication turns designs into chips. Semiconductor fabrication facilities ("fabs") make chips in these wafers in two steps: forming transistors and other electrical devices in material layers within silicon wafers; and forming metal interconnects between the electrical devices in insulating layers above the silicon. There are two business models for fabs: (1) fabs owned by integrated device manufacturers ("IDMs"), which manufacture chips based on their own designs; and (2) foundries, i.e., fabs operating independently and manufacturing chips for third-party customers. Firms headquartered in the United States, Taiwan, South Korea, Japan, and China control the vast majority of the world's fab market share and fab capacity-most of which is also physically located in these countries. Three firms - headquartered in the United States (Intel), Taiwan (TSMC), and South Korea (Samsung) - control virtually all of the world's advanced logic fab capacity, with the most cutting-edge fabs concentrated in Taiwan and South Korea.|NULL                                      |Chart shows countries' shares of global logic chip fabrication capacity at the 45 nm node or below. Each country's share is equal to the aggregate share of the companies headquartered in that country.|[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing SEMI's World Fab Forecast, November 2020 edition)         |NULL       |NULL|
+|S3      |Assembly, testing, and packaging (ATP)|At the end of the fabrication process, the finished wafer contains dozens of chips in a grid pattern. During assembly, testing, and packaging, the wafer is separated into individual chips, or "dies" Each chip is mounted on a frame with wires that connect the chip to external devices, and enclosed in a protective casing. This produces the familiar look of a dark gray rectangle with metal pins at the edges. The chip is also tested to ensure it operates as intended. Although ATP was historically low value, as transistor densities in logic chips have increased exponentially, packaging has increasingly become a bottleneck on chip performance. ATP occurs under two business models: (1) as in-house ATP services performed by integrated device manufacturers (IDMs) and foundries after fabrication; and (2) by outsourced semiconductor assembly and test (OSAT) firms, which perform ATP for third-party customers. Firms headquartered in Taiwan, the United States, China, and South Korea are the main providers of ATP services.       |Over $50 billion (2019)                   |Chart shows countries' shares of the total global ATP market, including OSAT and in-house.                                                                                                              |[CSET](https://cset.georgetown.edu/publication/the-semiconductor-supply-chain/) (citing Yole, SIA, SEMI, IC Insights, WSTS, and CSET calculations)|50000.0    |2019|
++--------+--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+-----------+----+
+
+==================================================
